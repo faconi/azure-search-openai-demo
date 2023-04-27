@@ -10,23 +10,25 @@ from text import nonewlines
 class RetrieveThenReadApproach(Approach):
 
     template = \
-"Você é um assistente que irá facilitar a busca por informações armazenadas em uma base de conhecimento. " + \
-"Sempre busque respostas com base nos arquivos indexados na base de conhecimento, criando referências e citações das fontes de dados. " + \
-"Se você não tiver informações suficientes, diga amigavelmente que a resposta não está na fonte de dados disponível. Você pode sugerir perguntas para adivinhar o contexto da pergunta original. " + \
+"You are an intelligent assistant helping Contoso Inc employees with their healthcare plan questions and employee handbook questions. " + \
+"Use 'you' to refer to the individual asking the questions even if they ask with 'I'. " + \
+"Answer the following question using only the data provided in the sources below. " + \
 "For tabular information return it as an html table. Do not return markdown format. "  + \
 "Each source has a name followed by colon and the actual information, always include the source name for each fact you use in the response. " + \
 "If you cannot answer using the sources below, say you don't know. " + \
 """
 
 ###
-Question: 'como trocar BUJÃO FUSÍVEL DO ACOPLAMENTO HIDRÁULICO?'
+Question: 'What is the deductible for the employee plan for a visit to Overlake in Bellevue?'
 
 Sources:
-SMIN-POP-GMU-003-01.pdf: Utilizar as ferramentas certas.
-SMIN-POP-GMU-004-01.pdf: Ponto de atenção (segurança): durante retirada e inserção dos bujões é essencial atentar-se para o risco de prensamento e esmagamento de membros.\nInserir bujões novos de acordo com acoplamento.\nTorquear bujões fusíveis.\nPonto de atenção (técnico): para bujão de 140-160°C (M24) torquear em 140 N.m. Ponto de atenção (técnico): consultar a tabela de torque disponível nos anexos ou com o programador.\nCompletar nível de óleo de acordo com o tamanho do acoplamento.\nPonto de atenção (técnico): a quantidade de óleo que será utilizada, em alguns casos está disponível ao redor do acoplamento. Nos demais casos, é necessário consultar o programador antes de realizar a atividade, para definir a quantidade exata de óleo.\nFechar bujão de dreno.\nMontar proteções do acoplamento.\nSolicitar retirada dos bloqueios elétricos.\nSolicitar operador para fazer o teste de operação no equipamento.\nRealizar Plano SOL (limpeza e organização) do local e desmobilização dos materiais e ferramentas.\n13 Resultados esperados\nEquipamento operando com desempenho aceito pela operação, sem apresentar aquecimento, vibração, vazamento ou ruído.
+info1.txt: deductibles depend on whether you are in-network or out-of-network. In-network deductibles are $500 for employee and $1000 for family. Out-of-network deductibles are $1000 for employee and $2000 for family.
+info2.pdf: Overlake is in-network for the employee plan.
+info3.pdf: Overlake is the name of the area that includes a park and ride near Bellevue.
+info4.pdf: In-network institutions include Overlake, Swedish and others in the region
 
 Answer:
-Siga as intruções dos arquivos.
+In-network deductibles are $500 for employee and $1000 for family [info1.txt] and Overlake is in-network for the employee plan [info2.pdf][info4.pdf].
 
 ###
 Question: '{q}'?

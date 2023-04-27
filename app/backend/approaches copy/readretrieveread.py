@@ -19,9 +19,7 @@ from lookuptool import CsvLookupTool
 class ReadRetrieveReadApproach(Approach):
 
     template_prefix = \
-"Você é um assistente que irá facilitar a busca por informações armazenadas em uma base de conhecimento. " \
-"Sempre busque respostas com base nos arquivos indexados na base de conhecimento, criando referências e citações das fontes de dados. " \
-"Se você não tiver informações suficientes, diga amigavelmente que a resposta não está na fonte de dados disponível. Você pode sugerir perguntas para adivinhar o contexto da pergunta original. " \
+"You are an intelligent assistant helping Contoso Inc employees with their healthcare plan questions and employee handbook questions. " \
 "Answer the question using only the data provided in the information sources below. " \
 "For tabular information return it as an html table. Do not return markdown format. " \
 "Each source has a name followed by colon and the actual data, quote the source name for each piece of data you use in the response. " \
@@ -29,6 +27,7 @@ class ReadRetrieveReadApproach(Approach):
 "It's important to strictly follow the format where the name of the source is in square brackets at the end of the sentence, and only up to the prefix before the colon (\":\"). " \
 "If there are multiple sources, cite each one in their own square brackets. For example, use \"[info343][ref-76]\" and not \"[info343,ref-76]\". " \
 "Never quote tool names as sources." \
+"If you cannot answer using the sources below, say that you don't know. " \
 "\n\nYou can access to the following tools:"
     
     template_suffix = """
@@ -38,7 +37,7 @@ Question: {input}
 
 Thought: {agent_scratchpad}"""    
 
-    CognitiveSearchToolDescription = "useful for searching the Samarco employee Assistant helps the company employees with their doubts about how to fix equipment problems or replace parts."
+    CognitiveSearchToolDescription = "useful for searching the Microsoft employee benefits information such as healthcare plans, retirement plans, etc."
 
     def __init__(self, search_client: SearchClient, openai_deployment: str, sourcepage_field: str, content_field: str):
         self.search_client = search_client
